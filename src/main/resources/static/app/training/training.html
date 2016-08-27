@@ -1,0 +1,237 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+
+    .form-group .help-block {
+        display: none;
+
+    }
+
+    .error-block {
+        color: #a94442;
+
+    }
+
+    .form-item-container {
+        height: 85px;
+    }
+
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox {
+        width: 50px;
+    }
+
+    .dropdown-menu {
+        margin-left: 146px;
+    }
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <button type="button" class="btn btn-primary btn-lg right"
+                        ng-click="initCreatePanel()">Create Training
+                </button>
+            </div>
+            <div ng-show="vm.showCreatePanel" class="row" id="hero">
+                <div class="row">
+
+                    <button type="button" class="btn btn-default btn-sm right" ng-click="closeThePanel()" id="close">
+                        <span class="glyphicon glyphicon-remove red"></span> Close
+                    </button>
+                </div>
+                <div class="widget wblue">
+                    <div form-panel title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+
+
+                        <form name="tForm" novalidate>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"> Details</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.name.$invalid && !tForm.name.$pristine }">
+                                            <label>Name :<span>*</span></label>
+                                            <input type="text" name="name" class="form-control"
+                                                   ng-model="tmodel.name" required>
+
+                                            <p ng-show="(tForm.country.$error.required && !tForm.country.$pristine) ||( submitted  && tForm.country.$pristine)"
+                                               class="error-block">Name
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.budget.$invalid && !tForm.budget.$pristine }">
+                                            <label>Budget :<span>*</span></label>
+                                            <input type="number" name="budget" class="form-control"
+                                                   ng-model="tmodel.budget" required>
+
+                                            <p ng-show="(tForm.budget.$error.required && !tForm.budget.$pristine) ||( submitted  && tForm.budget.$pristine)"
+                                               class="error-block">Budget
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.start.$invalid && !tForm.start.$pristine }">
+                                            <label>Start Date :<span>*</span></label>
+                                            <input type="date" name="start" class="form-control"
+                                                   ng-model="tmodel.start" required>
+
+                                        </div>
+                                        <p ng-show="tForm.start.$invalid && !tForm.start.$pristine" class="error-block">
+                                            Enter
+                                            starting date.</p>
+                                        <p ng-show="(tForm.start.$error.required && !tForm.start.$pristine) ||( submitted  && tForm.start.$pristine)"
+                                           class="error-block">Date of Start
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.end.$invalid && !tForm.end.$pristine }">
+                                            <label>End Date :<span>*</span></label>
+                                            <input type="date" name="end" class="form-control"
+                                                   ng-model="tmodel.end" required>
+
+                                        </div>
+                                        <p ng-show="tForm.end.$invalid && !tForm.end.$pristine" class="error-block">
+                                            Enter
+                                            ending date.</p>
+                                        <p ng-show="(tForm.end.$error.required && !tForm.end.$pristine) ||( submitted  && tForm.end.$pristine)"
+                                           class="error-block">Date of End
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.duration.$invalid && !tForm.duration.$pristine }">
+                                            <label>Duration Of Training :(Days) </label>
+                                            <input type="number" name="duration" class="form-control"
+                                                   ng-model="tmodel.duration" required>
+                                        </div>
+                                        <p ng-show="tForm.duration.$invalid && !tForm.duration.$pristine"
+                                           class="error-block">Enter
+                                            valid number.</p>
+                                        <p ng-show="(tForm.duration.$error.required && !tForm.duration.$pristine) ||( submitted  && tForm.duration.$pristine)"
+                                           class="error-block">Duration of training
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.target.$invalid && !tForm.target.$pristine }">
+                                            <label>Targeted Member : </label>
+                                            <input type="number" name="target" class="form-control"
+                                                   ng-model="tmodel.target" required>
+                                        </div>
+                                        <p ng-show="tForm.target.$invalid && !tForm.target.$pristine"
+                                           class="error-block">Enter
+                                            valid number.</p>
+                                        <p ng-show="(tForm.target.$error.required && !tForm.target.$pristine) ||( submitted  && tForm.target.$pristine)"
+                                           class="error-block">Targetted member
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(tForm.$valid)">
+                                {{btnText}}
+                            </button>
+
+                            {{tForm.valid}}
+                        </form>
+                    </div
+                    >
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.mainTitle}}"></div>
+                    <!--Point to be noted show-filter can be set as either true or false-->
+                    <table ng-table="vm.tableParams" class="table" show-filter="false">
+                        <tr ng-repeat="tg in $data">
+                            <td style="width: auto;text-align: center" title="'Training Name'" filter="{ age: 'text'}" sortable="'name'">
+                                <a  href="/#/training/{{tg.id}}">{{tg.name}}</a>
+                            </td>
+
+                            <td style="width: auto;text-align: center" title="'budget'" filter="{ name: 'text'}"
+                                sortable="'budget'">
+                                <span>{{tg.budget}}</span>
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Start date'" filter="{ name: 'text'}"
+                                sortable="'start'">
+                                <span>{{tg.start}}</span>
+                            </td>
+                            <td style="width: auto;text-align: center" title="'End date'" filter="{ name: 'text'}"
+                                sortable="'end'">
+                                <span>{{tg.end}}</span>
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Target'"
+                                filter="{ name: 'text'}" sortable="'target'">
+                                <span>{{tg.target}}</span>
+                            </td>
+
+
+                            <td style="width: auto;text-align: center" >
+                                <button><a data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                           ng-click="initEditPanel(tg.id)"></a></button>
+                            </td>
+                            <td style="width: auto;text-align: center">
+                                <a data-toggle="tooltip" title="Delete !">
+                                  <button ng-click="deleteTheTraining(tg.id)"
+                                            class="glyphicon glyphicon-trash red">
+                                      </button>
+                                </a>
+
+                            </td>
+
+                            <td style="width: auto;text-align: center">
+                                <button>
+                                    <a data-toggle="tooltip" title="View All Training Members !"
+                                       href="/#/training/{{tg.id}}">
+                                        <i class="fa fa-eye blue" aria-hidden="true"></i>
+                                    </a>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</section>

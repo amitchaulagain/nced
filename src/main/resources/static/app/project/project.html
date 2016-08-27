@@ -1,0 +1,242 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+
+    .form-group .help-block {
+        display: none;
+
+    }
+
+    .error-block {
+        color: #a94442;
+
+    }
+
+    .form-item-container {
+        height: 85px;
+    }
+
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox {
+        width: 50px;
+    }
+
+    table tr td {
+        width: auto;
+        text-align: center;
+    }
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+                        <!--aria-haspopup="true" aria-expanded="true">-->
+                    <!--{{selectedItem}}-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="row">
+                <div class="dropdown"> <span style="color: #1171a3; font-weight: bold" >Fiscal Year </span>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg right"
+                        ng-click="initCreatePanel()">Create Project
+                </button>
+            </div>
+            <div ng-show="vm.showCreatePanel" class="row" id="hero">
+                <div class="row">
+
+                    <button type="button" class="btn btn-default btn-sm right" ng-click="closeThePanel()" id="close">
+                        <span class="glyphicon glyphicon-remove red"></span> Close
+                    </button>
+                </div>
+                <div class="widget wblue">
+                    <div form-panel title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+
+
+                        <form name="projectForm" novalidate>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Project Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : projectmodel.projectCode.$invalid && !projectmodel.projectCode.$pristine }">
+                                            <label>Project Code :<span>*</span></label>
+                                            <input type="text" name="projectCode" class="form-control"
+                                                   ng-model="projectmodel.projectCode" required>
+                                            <!--&lt;!&ndash;-->
+                                            <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
+                                            <!--&ndash;&gt;-->
+                                        </div>
+
+                                        <p class="error-block"
+                                           ng-show="(projectForm.projectCode.$error.required && !projectForm.projectCode.$pristine) ||( submitted  && projectForm.projectCode.$pristine)">
+                                            Project Code is required.</p>
+
+
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : projectmodel.projectName.$invalid && !projectmodel.projectName.$pristine }">
+                                            <label>Project Name :<span>*</span></label>
+                                            <input type="text" name="projectName" class="form-control"
+                                                   ng-model="projectmodel.projectName" required>
+                                            <!--&lt;!&ndash;-->
+                                            <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
+                                            <!--&ndash;&gt;-->
+                                        </div>
+
+                                        <p class="error-block"
+                                           ng-show="(projectForm.projectName.$error.required && !projectForm.projectName.$pristine) ||( submitted  && projectForm.projectName.$pristine)">
+                                            Project Name is required.</p>
+
+
+                                    </div>
+
+
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : projectmodel.budgetSubHeadNumber.$invalid && !projectmodel.budgetSubHeadNumber.$pristine }">
+                                            <label>Budget Sub-Head :<span>*</span></label>
+                                            <input type="text" name="budgetSubHeadNumber" class="form-control"
+                                                   ng-model="projectmodel.budgetSubHeadNumber" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(projectForm.budgetSubHeadNumber.$error.required && !projectForm.budgetSubHeadNumber.$pristine) ||( submitted  && projectForm.budgetSubHeadNumber.$pristine)">
+                                            Budget Sub-Head is required</p>
+
+                                    </div>
+
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : projectmodel.budget.$invalid && !projectmodel.budget.$pristine }">
+                                            <label>Budget :<span>*</span></label>
+                                            <input type="number" name="budget" class="form-control"
+                                                   ng-model="projectmodel.budget" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(projectForm.budget.$error.required && !projectForm.budget.$pristine) ||( submitted  && projectForm.budget.$pristine)">
+                                            Budget is required.</p>
+
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : projectmodel.aidOrganisation.$invalid && !projectmodel.aidOrganisation.$pristine }">
+                                            <label> Aid Organisation :<span>*</span></label>
+                                            <input type="text" name="aidOrganisation" class="form-control"
+                                                   ng-model="projectmodel.aidOrganisation" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(projectForm.aidOrganisation.$error.required && !projectForm.aidOrganisation.$pristine) ||( submitted  && projectForm.aidOrganisation.$pristine)">
+                                            Aid Organisation name is required.</p>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(projectForm.$valid)">
+                                {{btnText}}
+                            </button>
+
+                            {{projectForm.$valid}}
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="Project View Panel"></div>
+                    <!--Point to be noted show-filter can be set as either true or false-->
+                    <table ng-table="vm.tableParams" class="table" show-filter="false">
+                        <tr ng-repeat="p in $data">
+
+
+                            <td title="'Project Code'" filter="{ projectCode: 'text'}" sortable="'projectCode'">
+                                <span>{{p.projectCode}}</span>
+                            </td>
+                            <td title="'Project Name'" filter="{ projectName: 'text'}" sortable="'projectName'">
+                                <span>{{p.projectName}}</span>
+                            </td>
+                            <td title="'Budget'" filter="{ budget  : 'text'}" sortable="'budget'">
+                                <span> {{p.budget}}</span>
+
+                            <td title="'Budget Sub Head Number'" filter="{ budgetSubHeadNumber: 'text'}"
+                                sortable="'budgetSubHeadNumber'">
+                                <span>   {{p.budgetSubHeadNumber}} </span>
+                            </td>
+                            <td title="'Aid Organisation'" filter="{ aidOrganisation: 'text'}"
+                                sortable="'aidOrganisation'">
+                                <span> {{p.aidOrganisation}}</span>
+                            </td>
+
+                            <td data-ng-show="showMe" class="cursor-hands">
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(p.id)"></button>
+                            </td>
+                            <td>
+                                <a data-ng-show="showMe" data-toggle="tooltip" title="Delete!">
+                                    <button ng-click="deleteTheProject(p.projectCode,p.id)"
+                                          class="glyphicon glyphicon-trash red"></button>
+                                </a>
+                            </td>
+                            <td>
+                                <a data-toggle="tooltip" title="View All Activities !" href="/#/activity/{{p.projectCode}}/{{selectedItem}}">
+                                    <button><i class="fa fa-eye blue" aria-hidden="true"></i></button>
+                                </a>
+                            </td>
+                            <!--<td>-->
+                                <!--<a data-toggle="tooltip" title="Update Progress !">-->
+                                    <!--<span ng-click="deleteTheUser(p.id)">-->
+
+                              <!--<i class="fa fa-wrench" style="font-size:24px"></i>-->
+
+                                    <!--</span>-->
+                                <!--</a>-->
+                            <!--</td>-->
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</section>

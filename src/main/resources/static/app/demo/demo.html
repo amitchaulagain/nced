@@ -1,0 +1,403 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+    .form-group .help-block {
+        display: none;
+
+    }
+    .error-block {
+        color: #a94442;
+
+    }
+    .form-item-container{
+        height:85px;
+    }
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox{
+        width:50px;
+    }
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+
+                <button style="margin-right: 17px" type="button" class="btn btn-primary btn-lg right"
+                        ng-click="initCreatePanel()">Create User
+                </button>
+            </div>
+            <div ng-show="vm.showCreatePanel" class="row" id="hero">
+                <div class="row">
+
+                    <button type="button" class="btn btn-default btn-sm right" ng-click="closeThePanel()" id="close">
+                        <span class="glyphicon glyphicon-remove red"></span> Close
+                    </button>
+                </div>
+                <div class="widget wblue">
+                    <div form-panel title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+
+
+                        <!-- <form>
+                             <div class="form-group">
+                                 <label for="exampleInputEmail1">Email address</label>
+                                 <input data-ng-model="usermodel.username"  class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{vm.user.username}}" >
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input data-ng-model="usermodel.password" type="password" class="form-control" id="exampleInputPassword1" value="{{vm.user.password}}"
+                                        placeholder="Password">
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputFile">File input</label>
+                                 <input type="file" id="exampleInputFile">
+                                 <p class="help-block">Example block-level help text here.</p>
+                             </div>
+                             <div class="checkbox">
+                                 <label>
+                                     <input type="checkbox"> Check me out and out and what is this again out
+                                 </label>
+                             </div>
+                             <button type="submit" class="btn btn-default" ng-click="eitherCreateOrEdit()">{{btnText}}</button>
+                         </form>-->
+                        <!--<ng-form name="pp">
+                            <formitemtextbox   hel="enter hero"   req="true" minimumlength="5"
+                                               label="hero" input="heroagain"></formitemtextbox>
+
+                            <formitemtextbox  hel="enter heroine"   label="heroine"  req="true"
+                                              patternkoname="number only" input="heroineagain"></formitemtextbox>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(pp.$valid)">Submit</button>
+                        </ng-form>
+                        <li data-ng-show="pp.$valid">Showing valid</li>
+                        <li data-ng-show="pp.$valid">Showing valid</li>
+                        <li data-ng-show="pp.heroineagain.$valid">Showing valid</li>-->
+                        <form name="userForm" novalidate>
+                            <!--<div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">-->
+                            <!--<label>Name</label>-->
+                            <!--<input type="text" name="name" class="form-control" ng-model="usermodel.name" required>-->
+                            <!--<p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>-->
+                            <!--</div>-->
+
+                            <!-- USERNAME -->
+                            <!-- <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                 <label>Username</label>
+                                 <input type="text" name="username" class="form-control" ng-model="usermodel.username" ng-minlength="3" ng-maxlength="8" required>
+                                 <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                                 <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                                 <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
+
+                             </div>-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">User Security Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                            <label>Username :<span>*</span></label>
+                                            <input type="email" name="username" class="form-control"
+                                                   ng-model="usermodel.username" required>
+                                            <!--&lt;!&ndash;-->
+                                            <!--(userForm.username.$error.required && !userForm.username.$pristine)|| -->
+                                            <!--&ndash;&gt;-->
+                                        </div>
+                                        <p ng-show="userForm.username.$invalid && !userForm.username.$pristine " class="error-block">Enter
+                                            valid email.</p>
+                                        <p class="error-block" ng-show="(userForm.username.$error.required && !userForm.username.$pristine) ||( submitted  && userForm.username.$pristine)">Username
+                                            is required.</p>
+                                        {{submitted}}aa
+                                        {{userForm.username.$error.required}}
+
+                                    </div>
+
+                                    <!-- EMAIL -->
+                                    <!--<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }" >-->
+                                    <!--<label>Email</label>-->
+                                    <!--<input type="email" name="email" class="form-control" ng-model="user.email" required>-->
+                                    <!--<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
+                                    <!--<p ng-show="userForm.email.$error.required" class="help-block">Email is required.</p>-->
+
+                                    <!--</div>-->
+                                    <div class="col-md-6 form-item-container" >
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                                            <label>Password :<span>*</span></label>
+                                            <input type="text" name="password" class="form-control"
+                                                   ng-model="usermodel.password" required>
+                                        </div>
+                                        <p class="error-block" ng-show="(userForm.password.$error.required && !userForm.password.$pristine) ||( submitted  && userForm.password.$pristine)">Password
+                                            is required.</p>
+
+                                    </div>
+
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group">
+                                            <label>Roles:</label>
+
+                                            <div data-ng-repeat="role in roles">
+                                                <label class="checkbox" style="width: auto" for="{{role.id}}">
+                                                    <input type="checkbox" ng-model="usermodel.selection.ids[role.name]"
+                                                           name="group" id="{{role.id}}"/>
+
+                                                    <div class="col-md-3">{{role.name}}</div>
+                                                </label>
+                                            </div>
+                                            {{selection}}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">User Information Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+                                            <label>First Name:<span>*</span></label>
+                                            <input type="text" name="firstName" class="form-control"
+                                                   ng-model="usermodel.firstName" required>
+
+                                        </div>
+                                        <p ng-show="(userForm.firstName.$error.required && !userForm.firstName.$pristine) ||( submitted  && userForm.firstName.$pristine)" class="error-block">First Name
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group">
+                                            <label>Middle Name:</label>
+                                            <input type="text" name="middleName" class="form-control"
+                                                   ng-model="usermodel.middleName"  >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+                                            <label>LastName :<span>*</span></label>
+                                            <input type="text" name="lastName" class="form-control"
+                                                   ng-model="usermodel.lastName" required>
+
+                                        </div>
+                                        <p ng-show="(userForm.lastName.$error.required && !userForm.lastName.$pristine) ||( submitted  && userForm.lastName.$pristine)" class="error-block">Last Name
+                                            is required.</p>
+
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group">
+
+                                            <label >Sex :<span>*</span></label>
+
+
+                                            <input class="radiobox" type="radio" data-ng-model="usermodel.sex" value="male">Male
+
+
+
+                                            <input class="radiobox" type="radio" data-ng-model="usermodel.sex" value="female">Female
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.dob.$invalid && !userForm.dob.$pristine }">
+                                            <label>Date Of Birth :<span>*</span></label>
+                                            <input type="date" name="dob" class="form-control"
+                                                   ng-model="usermodel.dob" required>
+
+                                        </div>
+                                        <p ng-show="userForm.dob.$invalid && !userForm.dob.$pristine" class="error-block">Enter
+                                            valid date.</p>
+                                        <p ng-show="(userForm.dob.$error.required && !userForm.dob.$pristine) ||( submitted  && userForm.dob.$pristine)" class="error-block">Date of Birth
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.landlineNumber.$invalid && !userForm.landlineNumber.$pristine }">
+                                            <label>Landline Number : </label>
+                                            <input type="number" name="landlineNumber" class="form-control"
+                                                   ng-model="usermodel.landlineNumber" required>
+                                        </div>
+                                        <p ng-show="userForm.landlineNumber.$invalid && !userForm.landlineNumber.$pristine" class="error-block">Enter
+                                            valid land-line number.</p>
+                                        <p ng-show="(userForm.landlineNumber.$error.required && !userForm.landlineNumber.$pristine) ||( submitted  && userForm.landlineNumber.$pristine)" class="error-block">Land-line Number
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine }">
+                                            <label>Mobile Number : </label>
+                                            <input type="number" name="mobileNumber" class="form-control"
+                                                   ng-model="usermodel.mobileNumber">
+                                        </div>
+                                        <p ng-show="userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine" class="error-block">Enter
+                                            valid mobile number.</p>
+                                        <p ng-show="(userForm.mobileNumber.$error.required && !userForm.mobileNumber.$pristine) ||( submitted  && userForm.mobileNumber.$pristine)" class="error-block">Mobile Number
+                                            is required.
+                                        </p>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Address Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.streetAddress.$invalid && !userForm.streetAddress.$pristine }">
+                                            <label>Tole :<span>*</span></label>
+                                            <input type="text" name="streetAddress" class="form-control"
+                                                   ng-model="usermodel.streetAddress" required>
+
+                                        </div>
+                                        <p ng-show="(userForm.streetAddress.$error.required && !userForm.streetAddress.$pristine) ||( submitted  && userForm.streetAddress.$pristine)" class="error-block">Tole  Name
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.vdcOrMunicipality.$invalid && !userForm.vdcOrMunicipality.$pristine }">
+                                            <label>VDC/Municipality :<span>*</span></label>
+
+                                            <input type="text" name="vdcOrMunicipality" class="form-control"
+                                                   ng-model="usermodel.vdcOrMunicipality" required>
+
+                                        </div>
+                                        <p ng-show="(userForm.vdcOrMunicipality.$error.required && !userForm.vdcOrMunicipality.$pristine) ||( submitted  && userForm.vdcOrMunicipality.$pristine)" class="error-block">VDC/Municipality
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.district.$invalid && !userForm.district.$pristine }">
+                                            <label>District :<span>*</span></label>
+                                            <input type="text" name="district" class="form-control"
+                                                   ng-model="usermodel.district" required>
+
+                                        </div>
+                                        <p ng-show="(userForm.district.$error.required && !userForm.district.$pristine) ||( submitted  && userForm.district.$pristine)" class="error-block">District
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.zone.$invalid && !userForm.zone.$pristine }">
+                                            <label>Zone :<span>*</span></label>
+                                            <input type="text" name="zone" class="form-control"
+                                                   ng-model="usermodel.zone" required>
+
+                                            <p ng-show="(userForm.zone.$error.required && !userForm.zone.$pristine) ||( submitted  && userForm.zone.$pristine)" class="error-block">Zone
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.country.$invalid && !userForm.country.$pristine }">
+                                            <label>Country :<span>*</span></label>
+                                            <input type="text" name="country" class="form-control"
+                                                   ng-model="usermodel.country" required>
+
+                                            <p ng-show="(userForm.country.$error.required && !userForm.country.$pristine) ||( submitted  && userForm.country.$pristine)" class="error-block">Country
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(userForm.$valid)">
+                                {{btnText}}
+                            </button>
+
+                            {{userForm.$valid}}
+                        </form>
+                    </div
+                    >
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 widget wblue">
+                    <div data-cc-widget-header title="User View Panel"></div>
+                    <!--Point to be noted show-filter can be set as either true or false-->
+
+                    <table ng-table="vm.tableParams" class="table" show-filter="false">
+                        <tr ng-repeat="user in $data">
+                            <td style="width: auto;text-align: center"title="'Username'" filter="{ name: 'text'}" sortable="'username'">
+                              <span>{{user.username}}</span>
+                            </td>
+
+                            <td style="width: auto;text-align: center" title="'Address'" filter="{ age: 'text'}" sortable="'address'">
+                                <span>{{user.streetAddress}},{{user.vdcOrMunicipality}},{{user.district}},{{user.zone}}</span>
+                            </td>
+                            <td title="'Name'" filter="{ age: 'text'}" sortable="'firstName'">
+                                {{user.firstName}}  {{user.middleName}} {{user.lastName}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Date of Birth'" filter="{ age: 'text'}" sortable="'dob'">
+                                {{user.dob}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Mobile Number'" filter="{ age: 'text'}" sortable="'mobileNumber'">
+                                {{user.mobileNumber}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Landline Number'" filter="{ age: 'text'}" sortable="'landlineNumber'">
+                                {{user.landlineNumber}}
+                            </td>
+                            <td style="width: auto;text-align: center" class="cursor-hands">
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(user.id)"></button>
+                            </td>
+                            <td style="width: auto;text-align: center">
+                                <a data-toggle="tooltip" title="Delete !">
+                                    <button ng-click="deleteTheUser(user.id)"
+                                          class="glyphicon glyphicon-trash red"></button>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</section>

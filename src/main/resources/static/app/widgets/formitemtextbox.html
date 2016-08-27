@@ -1,0 +1,27 @@
+<p>This is the template/FormItemTextBox view.</p>
+<style>
+    p .help-block {
+        color: red;
+    }
+</style>
+<ng-form name="aa" novalidate>
+    <label>{{label}} :</label>
+
+    <div class="form-group"
+         ng-class="{ 'has-error':aa.input.$dirty && aa.input.$error.required }">
+        <input type="text" class="form-control" ng-model=" aa[input.toString]" placeholder="{{hel}}"  name="{{input}}"
+               ng-required="{{req}}"
+               ng-minlength="{{minimumlength}}"
+               ng-pattern="{{mypattern}}"/>
+<!--
+        aa.{{input}}.$dirty && aa.{{input}}.$error.required
+-->
+        <p style="color: #a94442" ng-show="aa.{{input}}.$dirty && aa.{{input}}.$error.required" class="help-block">{{label}} is required</p>
+
+        <p style="color: #a94442" ng-show="aa.{{input}}.$error.minlength" class="help-block">At least {{minimumlength}} is required </p>
+
+
+        <p style="color: #a94442" ng-show="aa.{{input}}.$error.pattern" class="help-block">{{patternkoname}}</p>
+    </div>
+</ng-form>
+

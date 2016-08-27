@@ -1,0 +1,188 @@
+<!doctype html>
+<html data-ng-app="app">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <base href="/">
+    <title>NCED Training Application</title>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="webjars/toastr/2.1.1/toastr.css">
+    <link rel="stylesheet" href="app/treeGrid/treeGrid.css">
+
+    <link href="content/customtheme.css" rel="stylesheet">
+    <link href="content/styles.css" rel="stylesheet"/>
+</head>
+<body >
+<div>
+    <div ng-include="'app/layout/shell.html'"></div>
+    <div id="splash-page" data-ng-show="false">
+        <div class="page-splash">
+            <div class="page-splash-message">
+               NCED Training Application
+            </div>
+            <div class="progress progress-striped active page-progress-bar">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="webjars/jquery/2.2.1/jquery.js"></script>
+
+
+<!---->
+
+<!--
+<script src="webjars/datatables/1.10.12/media/js/jquery.dataTables.js"></script>
+-->
+
+<!--    -->
+<script type="text/javascript" src="webjars/angularjs/1.2.16/angular.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.2.16/angular-animate.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.2.16/angular-route.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.2.16/angular-resource.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/1.2.16/angular-cookies.min.js"></script>
+
+<script type="text/javascript" src="webjars/angular-sanitize/1.3.11/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.js"></script>
+<script type="text/javascript" src="webjars/toastr/2.1.1/toastr.js"></script>
+<script type="text/javascript" src="webjars/moment/2.12.0/moment.js"></script>
+<script type="text/javascript" src="app/extras.angular.plus/ngplus-overlay.js"></script>
+<!--for data-table-->
+
+
+<!--<script src="webjars/angular-datatables/0.5.4/dist/angular-datatables.min.js"></script>-->
+<!--<link rel="stylesheet" href="webjars/angular-datatables/0.5.4/dist/css/angular-datatables.min.css">-->
+
+
+<link href="content/ng-table/ng-table.css" rel="stylesheet">
+<script src="content/ng-table/ng-table.js"></script>
+
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>
+-->
+
+
+<script type="text/javascript" src="app/app.module.js"></script>
+<script type="text/javascript" src="app/interceptors.js"></script>
+
+<!--<script type="text/javascript" src="webjars/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>-->
+<!--<script type="text/javascript" src="webjars/angular-resource/1.5.1/angular-resource.min.js"></script>-->
+<!--<script type="text/javascript" src="webjars/lodash/4.6.1/lodash.js"></script>-->
+
+
+<!-- Reusable Blocks/Modules -->
+<script src="app/blocks/exception/exception.module.js"></script>
+<script src="app/blocks/exception/exception-handler.provider.js"></script>
+<script src="app/blocks/exception/exception.js"></script>
+<script src="app/blocks/logger/logger.module.js"></script>
+<script src="app/blocks/logger/logger.js"></script>
+<script src="app/blocks/router/router.module.js"></script>
+<script src="app/blocks/router/routehelper.js"></script>
+<script src="app/blocks/security/security.module.js"></script>
+
+<script src="app/blocks/security/constant.js"></script>
+<script src="app/blocks/security/authUtils.js"></script>
+
+<!-- core module -->
+<script src="app/core/core.module.js"></script>
+<script src="app/core/constants.js"></script>
+<script src="app/core/config.js"></script>
+<script src="app/core/dataservice.js"></script>
+<script src="app/core/DTO.js"></script>
+
+<!--layout-->
+<script src="app/layout/layout.module.js"></script>
+<script src="app/layout/shell.js"></script>
+<script src="app/layout/sidebar.js"></script>
+
+
+<!--widgets-->
+<script src="app/widgets/widgets.module.js"></script>
+<script src="app/widgets/ccSidebar.js"></script>
+<script src="app/widgets/ccSpinner.js"></script>
+<script src="app/widgets/ccWidgetClose.js"></script>
+<script src="app/widgets/ccWidgetHeader.js"></script>
+<script src="app/widgets/ccWidgetMinimize.js"></script>
+
+<!-- dashboard -->
+<script src="app/dashboard/dashboard.module.js"></script>
+<script src="app/dashboard/config.route.js"></script>
+<script src="app/dashboard/dashboard.js"></script>
+
+<!--avengers module--><!--
+<script src="app/avengers/avengers.module.js"></script>
+<script src="app/avengers/config.route.js"></script>
+<script src="app/avengers/avengers.js"></script>-->
+<script src="app/home/home.module.js"></script>
+<script src="app/home/config.route.js"></script>
+<script src="app/home/home.js"></script>
+<script src="app/home/loginService.js"></script>
+
+
+<!--Demo module-->
+<script src="app/demo/demo.module.js"></script>
+<script src="app/demo/config.route.js"></script>
+<script src="app/demo/demo.js"></script>
+
+<!--Project module-->
+<script src="app/project/project.module.js"></script>
+<script src="app/project/config.route.js"></script>
+<script src="app/project/project.js"></script>
+<script src="app/project/projectservice.js"></script>
+
+<!--Project Co-Module*******Project Activity with Goal***********-->
+<script src="app/project/project-activity/activity.js"></script>
+<script src="app/project/project-activity/activityservice.js"></script>
+<script src="app/project/goalservice.js"></script>
+
+<!--Project Co-Module*******Project Activity with Progress***********-->
+
+<script src="app/project/activity-progress/progress.js"></script>
+<script src="app/project/activity-progress/progressservice.js"></script>
+
+<!--TreeGridView-->
+<script src="app/treeGrid/tree-grid-directive.js"></script>
+<script src="app/widgets/formPanel.js"></script>
+<script src="app/demo/userservice.js"></script>
+<script src="app/widgets/formdirectives.js"></script>
+
+<!--Training module-->
+<script src="app/training/trainingcenter.module.js"></script>
+<script src="app/training/config.route.js"></script>
+<script src="app/training/trainingcenter.js"></script>
+<script src="app/training/trainingcenterservice.js"></script>
+<script src="app/training/training.js"></script>
+<script src="app/training/trainingservice.js"></script>
+<script src="app/training/member.js"></script>
+<script src="app/training/memberservice.js"></script>
+
+
+<!--Report Module-->
+
+<script src="app/project/report/report.js"></script>
+<script src="app/project/report/reportservice.js"></script>
+
+<script src="app/training/report/treport.js"></script>
+<script src="app/training/report/treportservice.js"></script>
+
+
+
+<!--Testing-->
+<script src="app/project/hero.js"></script>
+
+
+</body>
+</html>

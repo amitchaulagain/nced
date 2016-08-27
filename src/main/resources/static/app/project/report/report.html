@@ -1,0 +1,223 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+
+    .form-group .help-block {
+        display: none;
+
+    }
+
+    .error-block {
+        color: #a94442;
+
+    }
+
+    .form-item-container {
+        height: 85px;
+    }
+
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox {
+        width: 50px;
+    }
+
+    table tr td {
+        width: auto;
+        text-align: center;
+    }
+
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container ">
+
+            <div class="row">
+                <div class="dropdown"><span style="color: #1171a3; font-weight: bold" >Fiscal Year </span>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="row">-->
+            <div class="widget wblue report">
+                <div data-cc-widget-header title="Project Activities Report Panel" style="width:auto"></div>
+                <!--Point to be noted show-filter can be set as either true or false-->
+                <table ng-table="vm.tableParams" class="table " show-filter="false">
+
+                    <thead>
+                    <tr>
+                        <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Head</th>
+                        <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Name</th>
+                        <th style="vertical-align: middle" bgcolor="#f0f8ff" rowspan="2">Project Code </th>
+                        <th colspan="5" bgcolor="#faebd7">1st Trimester</th>
+                        <th colspan="5" bgcolor="#f0f8ff">2nd Trimester</th>
+                        <th colspan="5" bgcolor="#faebd7">3rd Trimester</th>
+                        <th colspan="5" bgcolor="f0f8ff">Yearly</th>
+
+                    </tr>
+                    <tr>
+                        <th bgcolor="#faebd7">Goal Qty</th>
+                        <th bgcolor="#faebd7">Progress Qty</th>
+                        <th bgcolor="#faebd7">Budget</th>
+                        <th bgcolor="#faebd7">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
+                        <th bgcolor="#f0f8ff">Goal Qty</th>
+                        <th bgcolor="#f0f8ff">Progress Qty</th>
+                        <th bgcolor="#f0f8ff">Budget</th>
+                        <th bgcolor="#f0f8ff">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
+                        <th bgcolor="#faebd7">Goal Qty</th>
+                        <th bgcolor="#faebd7">Progress Qty</th>
+                        <th bgcolor="#faebd7">Budget</th>
+                        <th bgcolor="#faebd7">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
+                        <th bgcolor="#f0f8ff">Goal Qty</th>
+                        <th bgcolor="#f0f8ff">Progress Qty</th>
+                        <th bgcolor="#f0f8ff">Budget</th>
+                        <th bgcolor="#f0f8ff">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
+                    </tr>
+
+                    </thead>
+                    <tr ng-repeat="a in $data" bgcolor="#faebd7">
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.activityDTO.activityHead}} </span>
+                        </td>
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.activityDTO.activityName}} </span>
+                        </td>
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                                   sortable="'goalQty'" >
+                        <span>   {{a.activityDTO.projectCode}} </span>
+                    </td>
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g1.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#faebd7" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p1.progressQty}}</span>
+
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ budget: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g1.budget}} </span>
+                        </td>
+
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g1.weightage}} </span>
+                        </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p1.weightedProgress}} </span>
+                        </td>
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g2.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p2.progressQty}}</span>
+
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'budget'">
+                            <span>   {{a.g2.budget}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'weightage'">
+                            <span>   {{a.g2.weightage}} </span>
+                        </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p2.weightedProgress}} </span>
+                        </td>
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g3.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#faebd7" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p3.progressQty}}</span>
+
+                        <td bgcolor="#faebd7"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g3.budget}} </span>
+                        </td>
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g3.weightage}} </span>
+                        </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p3.weightedProgress}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p.progressQty}}</span>
+
+                        <td bgcolor="#f0f8ff"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g.budget}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g.weightage}} </span>
+                        </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p.weightedProgress}} </span>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+            </div>
+            <!--</div>-->
+
+        </div>
+
+
+    </section>
+</section>

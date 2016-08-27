@@ -1,0 +1,327 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+
+    .form-group .help-block {
+        display: none;
+
+    }
+
+    .error-block {
+        color: #a94442;
+
+    }
+
+    .form-item-container {
+        height: 85px;
+    }
+
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox {
+        width: 50px;
+    }
+
+    table tr td {
+        width: auto;
+        text-align: center;
+    }
+
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+
+            <div class="row">
+                <div data-ng-show="!vm.forReport" class="dropdown"><span style="color: #1171a3; font-weight: bold" >Fiscal Year </span>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="oneYear in fYear  "><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                    </ul>
+                </div>
+
+                <button data-ng-show="vm.forReport" type="button" class="btn btn-primary btn-lg right"
+                        ng-click="initCreatePanel()">Create Progress
+                </button>
+            </div>
+            <div ng-show="vm.showCreatePanel" class="row" id="hero">
+                <div class="row">
+
+                    <button type="button" class="btn btn-default btn-sm right" ng-click="closeThePanel()" id="close">
+                        <span class="glyphicon glyphicon-remove red"></span> Close
+                    </button>
+                </div>
+                <div class="widget wblue">
+                    <div form-panel title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+
+
+                        <form name="progressForm" novalidate>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Progress Details</h3>
+                                </div>
+                                <div class="panel-body">
+
+
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : progressmodel.goalQty.$invalid && !progressmodel.goalQty.$pristine }">
+                                            <label>Goal Qty :<span>*</span></label>
+                                            <input type="text" name="goalQty" class="form-control"
+                                                   ng-model="progressmodel.goalQty" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(progressForm.goalQty.$error.required && !progressForm.goalQty.$pristine) ||( submitted  && progressForm.goalQty.$pristine)">
+                                            Goal Qty is required</p>
+
+                                    </div>
+
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : progressmodel.progressQty.$invalid && !progressmodel.progressQty.$pristine }">
+                                            <label>Progress Qty :<span>*</span></label>
+                                            <input type="number" name="progressQty" class="form-control"
+                                                   ng-model="progressmodel.progressQty" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(progressForm.progressQty.$error.required && !progressForm.progressQty.$pristine) ||( submitted  && progressForm.progressQty.$pristine)">
+                                            Progress Qty is required.</p>
+
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : progressmodel.description.$invalid && !progressmodel.description.$pristine }">
+                                            <label>Description :<span>*</span></label>
+                                            <textarea  name="description" class="form-control"
+                                                   ng-model="progressmodel.description" required />
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(progressForm.goalQty.$error.required && !progressForm.description.$pristine) ||( submitted  && progressForm.description.$pristine)">
+                                            Unit is required.</p>
+
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+
+
+                                        <div class="dropdown">
+                                            <label>Time Frame:<span>*</span></label>
+                                            <button class="btn btn-default dropdown-toggle" type="button"
+                                                    id="dropdownMenu1" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                {{selectedTimeFrameItem}}
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li ng-repeat="oneYear in timeFrame"><a
+                                                        ng-click="timeFrameDropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+
+
+                                        <div class="dropdown">
+                                            <label>Training Center :<span>*</span></label>
+                                            <button class="btn btn-default dropdown-toggle" type="button"
+                                                    id="dropdownMenu1" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                {{selectedTrainingCenterItem}}
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li ng-repeat="tc in trainingCenters"><a
+                                                        ng-click="trainingCenterDropboxitemselected(tc)">{{tc}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(progressForm.$valid)">
+                                {{btnText}}
+                            </button>
+
+                            {{progressForm.$valid}}
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div ng-show="vm.showGoalPanel" class="row" id="hero">
+                <div class="row">
+
+                    <button type="button" class="btn btn-default btn-sm right" ng-click="closeTheGoalPanel()"
+                            id="close">
+                        <span class="glyphicon glyphicon-remove red"></span> Close
+                    </button>
+                </div>
+                <div class="widget wblue report">
+                    <div form-panel title="{{vm.goalTitle}}"></div>
+                    <div class="widget-content user">
+
+
+                        <form name="q1GoalForm" novalidate>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">First Quarter Goal</h3>
+                                </div>
+                                <div class="panel-body">
+
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : q1GoalForm.qty.$invalid && !q1GoalForm.qty.$pristine }">
+                                            <label>Qty :<span>*</span></label>
+                                            <input type="text" name="qty" class="form-control"
+                                                   ng-model="q1goalmodel.qty" required>
+                                            <!--&lt;!&ndash;-->
+                                            <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
+                                            <!--&ndash;&gt;-->
+                                        </div>
+                                        <p ng-show="q1GoalForm.qty.$invalid && !q1GoalForm.qty.$pristine "
+                                           class="error-block">Enter
+                                            valid email.</p>
+                                        <p class="error-block"
+                                           ng-show="(q1GoalForm.qty.$error.required && !q1GoalForm.qty.$pristine) ||( submitted  && q1GoalForm.qty.$pristine)">
+                                            Project Code is required.</p>
+
+
+                                    </div>
+
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : q1goalmodel.progressQty.$invalid && !projectmodel.progressQty.$pristine }">
+                                            <label>progressQty :<span>*</span></label>
+                                            <input type="text" name="progressQty" class="form-control"
+                                                   ng-model="q1goalmodel.progressQty" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(q1GoalForm.progressQty.$error.required && !q1GoalForm.progressQty.$pristine) ||( submitted  && q1GoalForm.progressQty.$pristine)">
+                                            progressQty is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : q1goalmodel.weightage.$invalid && !q1goalmodel.weightage.$pristine }">
+                                            <label> Weightage :<span>*</span></label>
+                                            <input type="text" name="weightage" class="form-control"
+                                                   ng-model="q1goalmodel.weightage" required>
+                                        </div>
+                                        <p class="error-block"
+                                           ng-show="(q1GoalForm.weightage.$error.required && !q1GoalForm.weightage.$pristine) ||( submitted  && q1GoalForm.weightage.$pristine)">
+                                            Weightage is required.</p>
+
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn-primary"
+                                            ng-click="q1submitFormss(q1GoalForm.$valid)">
+                                        {{q1btnText}}
+                                    </button>
+
+                                    {{q1GoalForm.$valid}}
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <!--Point to be noted show-filter can be set as either true or false-->
+                    <table ng-table="vm.tableParams" class="table" show-filter="!vm.forReport">
+                        <tr ng-repeat="a in $data">
+
+                            <td   title="'Activty '" filter="{ activityName: 'text'}"
+                                sortable="'activityName'">
+                                <span>   {{a.activityName}} </span>
+                            </td>
+                            <td      title="'Project '" filter="{ projectName: 'text'}"
+                                sortable="'projectName'">
+                                <span>   {{a.projectName}} </span>
+                            </td>
+                            <td title="'Submission date'" filter="{ goalQty: 'text'}"
+                                sortable="'goalQty'">
+                                <span>   {{a.date}} </span>
+                            </td>
+
+                            <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                                sortable="'goalQty'">
+                                <span>   {{a.goalQty}} </span>
+                            </td>
+                            <td title="'progressQty'" filter="{ progressQty  : 'text'}" sortable="'progressQty'">
+                                <span> {{a.progressQty}}</span>
+                            </td>
+                            <td title="'Time Frame'" filter="{ timeFrame  : 'text'}" sortable="'timeFrame'">
+                                <span> {{a.timeFrame}}</span>
+                            </td>
+                            <td title="'Training Center'" filter="{ trainingCenter  : 'text'}" sortable="'trainingCenter'" >
+                                <span> {{a.trainingCenter}}</span>
+                            </td>
+                            <td title="'Submitted By'" filter="{ submittedBy  : 'text'}" sortable="'submittedBy'" >
+                                <span> {{a.submittedBy}}</span>
+                            </td>
+
+
+
+                            <td data-ng-show="vm.forReport" class="cursor-hands">
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(a.id)"></button>
+                            </td>
+                            <td data-ng-show="vm.forReport">
+                                <a data-toggle="tooltip" title="Delete ">
+                                    <button ng-click="deleteThisProgress(a.id,a.submittedBy)"
+                                          class="glyphicon glyphicon-trash red"></button>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+</section>

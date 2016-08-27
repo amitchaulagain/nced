@@ -1,0 +1,335 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+    .form-group .help-block {
+        display: none;
+
+    }
+    .error-block {
+        color: #a94442;
+
+    }
+    .form-item-container{
+        height:85px;
+    }
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox{
+        width:50px;
+    }
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <button data-ng-show="vm.can" type="button" class="btn btn-primary btn-lg right"
+                        ng-click="initCreatePanel()">Create Trainee
+                </button>
+            </div>
+            <div ng-show="vm.showCreatePanel" class="row" id="hero">
+                <div class="row">
+
+                    <button type="button" class="btn btn-default btn-sm right" ng-click="closeThePanel()" id="close">
+                        <span class="glyphicon glyphicon-remove red"></span> Close
+                    </button>
+                </div>
+                <div class="widget wblue">
+                    <div form-panel title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+
+
+
+                        <form name="mForm" novalidate>
+                            
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Trainee Information Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.firstName.$invalid && !mForm.firstName.$pristine }">
+                                            <label>First Name:<span>*</span></label>
+                                            <input type="text" name="firstName" class="form-control"
+                                                   ng-model="membermodel.firstName" required>
+
+                                        </div>
+                                        <p ng-show="(mForm.firstName.$error.required && !mForm.firstName.$pristine) ||( submitted  && mForm.firstName.$pristine)" class="error-block">First Name
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group">
+                                            <label>Middle Name:</label>
+                                            <input type="text" name="middleName" class="form-control"
+                                                   ng-model="membermodel.middleName"  >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.lastName.$invalid && !mForm.lastName.$pristine }">
+                                            <label>LastName :<span>*</span></label>
+                                            <input type="text" name="lastName" class="form-control"
+                                                   ng-model="membermodel.lastName" required>
+
+                                        </div>
+                                        <p ng-show="(mForm.lastName.$error.required && !mForm.lastName.$pristine) ||( submitted  && mForm.lastName.$pristine)" class="error-block">Last Name
+                                            is required.</p>
+
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group">
+
+                                            <label >Sex :<span>*</span></label>
+
+
+                                            <input class="radiobox" type="radio" data-ng-model="membermodel.sex" value="male">Male
+
+
+
+                                            <input class="radiobox" type="radio" data-ng-model="membermodel.sex" value="female">Female
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.dob.$invalid && !mForm.dob.$pristine }">
+                                            <label>Date Of Birth :<span>*</span></label>
+                                            <input type="date" name="dob" class="form-control"
+                                                   ng-model="membermodel.dob" required>
+
+                                        </div>
+                                        <p ng-show="mForm.dob.$invalid && !mForm.dob.$pristine" class="error-block">Enter
+                                            valid date.</p>
+                                        <p ng-show="(mForm.dob.$error.required && !mForm.dob.$pristine) ||( submitted  && mForm.dob.$pristine)" class="error-block">Date of Birth
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.landlineNumber.$invalid && !mForm.landlineNumber.$pristine }">
+                                            <label>Landline Number : </label>
+                                            <input type="number" name="landlineNumber" class="form-control"
+                                                   ng-model="membermodel.landlineNumber" required>
+                                        </div>
+                                        <p ng-show="mForm.landlineNumber.$invalid && !mForm.landlineNumber.$pristine" class="error-block">Enter
+                                            valid land-line number.</p>
+                                        <p ng-show="(mForm.landlineNumber.$error.required && !mForm.landlineNumber.$pristine) ||( submitted  && mForm.landlineNumber.$pristine)" class="error-block">Land-line Number
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.mobileNumber.$invalid && !mForm.mobileNumber.$pristine }">
+                                            <label>Mobile Number : </label>
+                                            <input type="number" name="mobileNumber" class="form-control"
+                                                   ng-model="membermodel.mobileNumber" required>
+                                        </div>
+                                        <p ng-show="mForm.mobileNumber.$invalid && !mForm.mobileNumber.$pristine" class="error-block">Enter
+                                            valid mobile number.</p>
+                                        <p ng-show="(mForm.mobileNumber.$error.required && !mForm.mobileNumber.$pristine) ||( submitted  && mForm.mobileNumber.$pristine)" class="error-block">Mobile Number
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.organisation.$invalid && !mForm.organisation.$pristine }">
+                                            <label>Associated Organisation : </label>
+                                            <input type="text" name="organisation" class="form-control"
+                                                   ng-model="membermodel.organisation" required>
+                                        </div>
+
+                                        <p ng-show="(mForm.organisation.$error.required && !mForm.organisation.$pristine) ||( submitted  && mForm.organisation.$pristine)" class="error-block">Associated Organisation Name
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.email.$invalid && !mForm.email.$pristine }">
+                                            <label>Email : </label>
+                                            <input type="email" name="email" class="form-control"
+                                                   ng-model="membermodel.email" required>
+                                        </div>
+                                        <p ng-show="mForm.email.$invalid && !mForm.email.$pristine" class="error-block">Enter
+                                            valid email.</p>
+                                        <p ng-show="(mForm.email.$error.required && !mForm.email.$pristine) ||( submitted  && mForm.email.$pristine)" class="error-block">Email
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.workplace.$invalid && !mForm.workplace.$pristine }">
+                                            <label>Workplace : </label>
+                                            <input type="text" name="workplace" class="form-control"
+                                                   ng-model="membermodel.workplace" required>
+                                        </div>
+
+                                        <p ng-show="(mForm.workplace.$error.required && !mForm.workplace.$pristine) ||( submitted  && mForm.workplace.$pristine)" class="error-block">Workplace
+                                            is required.
+                                        </p>
+
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Address Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.streetAddress.$invalid && !mForm.streetAddress.$pristine }">
+                                            <label>Tole :<span>*</span></label>
+                                            <input type="text" name="streetAddress" class="form-control"
+                                                   ng-model="membermodel.streetAddress" required>
+
+                                        </div>
+                                        <p ng-show="(mForm.streetAddress.$error.required && !mForm.streetAddress.$pristine) ||( submitted  && mForm.streetAddress.$pristine)" class="error-block">Tole  Name
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.vdcOrMunicipality.$invalid && !mForm.vdcOrMunicipality.$pristine }">
+                                            <label>VDC/Municipality :<span>*</span></label>
+
+                                            <input type="text" name="vdcOrMunicipality" class="form-control"
+                                                   ng-model="membermodel.vdcOrMunicipality" required>
+
+                                        </div>
+                                        <p ng-show="(mForm.vdcOrMunicipality.$error.required && !mForm.vdcOrMunicipality.$pristine) ||( submitted  && mForm.vdcOrMunicipality.$pristine)" class="error-block">VDC/Municipality
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.district.$invalid && !mForm.district.$pristine }">
+                                            <label>District :<span>*</span></label>
+                                            <input type="text" name="district" class="form-control"
+                                                   ng-model="membermodel.district" required>
+
+                                        </div>
+                                        <p ng-show="(mForm.district.$error.required && !mForm.district.$pristine) ||( submitted  && mForm.district.$pristine)" class="error-block">District
+                                            is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.zone.$invalid && !mForm.zone.$pristine }">
+                                            <label>Zone :<span>*</span></label>
+                                            <input type="text" name="zone" class="form-control"
+                                                   ng-model="membermodel.zone" required>
+
+                                            <p ng-show="(mForm.zone.$error.required && !mForm.zone.$pristine) ||( submitted  && mForm.zone.$pristine)" class="error-block">Zone
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : mForm.country.$invalid && !mForm.country.$pristine }">
+                                            <label>Country :<span>*</span></label>
+                                            <input type="text" name="country" class="form-control"
+                                                   ng-model="membermodel.country" required>
+
+                                            <p ng-show="(mForm.country.$error.required && !mForm.country.$pristine) ||( submitted  && mForm.country.$pristine)" class="error-block">Country
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(mForm.$valid)">
+                                {{btnText}}
+                            </button>
+
+                            {{mForm.$valid}}
+                        </form>
+                    </div
+                    >
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.mainTitle}}"></div>
+                    <!--Point to be noted show-filter can be set as either true or false-->
+                    <table ng-table="vm.tableParams" class="table" show-filter="false">
+                        <tr ng-repeat="member in $data">
+
+
+                            <td title="'Name'" filter="{ age: 'text'}" sortable="'firstName'">
+                                {{member.firstName}}  {{member.middleName}} {{member.lastName}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Address'" filter="{ age: 'text'}" sortable="'address'">
+                                <span>{{member.streetAddress}},{{member.vdcOrMunicipality}},{{member.district}},{{member.zone}}</span>
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Date of Birth'" filter="{ age: 'text'}" sortable="'dob'">
+                                {{member.dob}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Mobile Number'" filter="{ age: 'text'}" sortable="'mobileNumber'">
+                                {{member.mobileNumber}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Landline Number'" filter="{ age: 'text'}" sortable="'landlineNumber'">
+                                {{member.landlineNumber}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Email'" filter="{ age: 'text'}" sortable="'landlineNumber'">
+                                {{member.email}}
+                            </td>
+                            <td style="width: auto;text-align: center" title="'Gender'" filter="{ age: 'text'}" sortable="'landlineNumber'">
+                                {{member.male}}
+                            </td>
+                            <td style="width: auto;text-align: center" class="cursor-hands">
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(member.memberId)"></button>
+                            </td>
+                            <td style="width: auto;text-align: center">
+                                <a data-toggle="tooltip" title="Delete !">
+                                    <button ng-click="deleteTheMember(member.memberId)"
+                                          class="glyphicon glyphicon-trash red"></button>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</section>
